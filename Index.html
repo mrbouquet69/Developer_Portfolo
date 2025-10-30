@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Asset Downloading</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Mr_bouquet</h1>
+        <button id="login-button">
+            <img src="roblox-logo.png" alt="Roblox Logo"> Login
+        </button>
+    </header>
+
+    <main>
+        <div id="downloads"></div>
+    </main>
+
+    <footer>
+        <a href="TOS.pdf">TOS</a>
+    </footer>
+
+    <script>
+        const downloadsDiv = document.getElementById('downloads');
+
+        fetch('Downloads/')
+            .then(response => response.text())
+            .then(data => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
+                const files = Array.from(doc.querySelectorAll('a'));
+
+                files.forEach(file => {
+                    const fileName = file.getAttribute('href');
+                    if (fileName.endsWith('.rbxm') || fileName.endsWith('.rbxl')) {
+                        const imageName = fileName.replace(/\.rb[xl]$/, '.png');
+                        const productDiv = document.createElement('div');
+                        productDiv.classList.add('product');
+
+                        productDiv.innerHTML = `
+                            <img src="Downloads/${imageName}" alt="${fileName}">
+                            <p>${fileName}</p>
+                            <a href="Downloads/${fileName}">Download</a>
+                        `;
+                        downloadsDiv.appendChild(productDiv);
+                    }
+                });
+            });
+    </script>
+</body>
+</html>
