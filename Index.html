@@ -1,53 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Asset Downloading</title>
-    <link rel="stylesheet" href="styles.css">
+<title>Mr_bouquet</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Style the body */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+/* Header/logo Title */
+.header {
+  padding: 80px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+}
+
+/* Increase the font size of the heading */
+.header h1 {
+  font-size: 40px;
+}
+
+/* Sticky navbar */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: sticky;
+  top: 0;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Active/current link */
+.navbar a.active {
+  background-color: #666;
+  color: white;
+}
+
+/* Column container */
+.row {  
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Sidebar/left column */
+.side {
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+/* Main column */
+.main {   
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+
+/* Responsive layout */
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Mr_bouquet</h1>
-        <button id="login-button">
-            <img src="roblox-logo.png" alt="Roblox Logo"> Login
-        </button>
-    </header>
 
-    <main>
-        <div id="downloads"></div>
-    </main>
+<div class="header">
+  <h1>Mr_bouquet</h1>
+</div>
 
-    <footer>
-        <a href="TOS.pdf">TOS</a>
-    </footer>
-
-    <script>
-        const downloadsDiv = document.getElementById('downloads');
-
-        fetch('Downloads/')
-            .then(response => response.text())
-            .then(data => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(data, 'text/html');
-                const files = Array.from(doc.querySelectorAll('a'));
-
-                files.forEach(file => {
-                    const fileName = file.getAttribute('href');
-                    if (fileName.endsWith('.rbxm') || fileName.endsWith('.rbxl')) {
-                        const imageName = fileName.replace(/\.rb[xl]$/, '.png');
-                        const productDiv = document.createElement('div');
-                        productDiv.classList.add('product');
-
-                        productDiv.innerHTML = `
-                            <img src="Downloads/${imageName}" alt="${fileName}">
-                            <p>${fileName}</p>
-                            <a href="Downloads/${fileName}">Download</a>
-                        `;
-                        downloadsDiv.appendChild(productDiv);
-                    }
-                });
-            });
-    </script>
+<div class="navbar">
+  <a href="#" class="active">Home</a>
+  <a href="#">Terms Of Service</a>
+</div>
+<div class="row">
+  <div class="side">
+    <h2>About Me</h2>
+    <p>Hello my name is Luther I am a small roblox developer I mainly make stuff like: Supermarkets, Cafe's and more.</p>
+    <h3>Work</h3>
+    <p>Here is some of the public stuff I have made including roblox games and Websites.</p>
+    <div class="fakeimg" style="height:60px;">Image</div><br>
+    <div class="fakeimg" style="height:60px;">Image</div><br>
+    <div class="fakeimg" style="height:60px;">Image</div><br>
+  </div>
+<div class="footer">
+  <a href="https://github.com" target="_blank">
+    Open Source on GitHub
+  </a>
+</div>
 </body>
 </html>
