@@ -28,11 +28,12 @@ body {
   font-size: 40px;
 }
 
-/* Sticky navbar */
+/* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
 .navbar {
   overflow: hidden;
   background-color: #333;
   position: sticky;
+  position: -webkit-sticky;
   top: 0;
 }
 
@@ -60,12 +61,16 @@ body {
 
 /* Column container */
 .row {  
+  display: -ms-flexbox; /* IE10 */
   display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
   flex-wrap: wrap;
 }
 
+/* Create two unequal columns that sits next to each other */
 /* Sidebar/left column */
 .side {
+  -ms-flex: 30%; /* IE10 */
   flex: 30%;
   background-color: #f1f1f1;
   padding: 20px;
@@ -73,12 +78,13 @@ body {
 
 /* Main column */
 .main {   
+  -ms-flex: 70%; /* IE10 */
   flex: 70%;
   background-color: white;
   padding: 20px;
 }
 
-/* Fake image */
+/* Fake image, just for this example */
 .fakeimg {
   background-color: #aaa;
   width: 100%;
@@ -92,13 +98,14 @@ body {
   background: #ddd;
 }
 
-/* Responsive layout */
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 700px) {
   .row {   
     flex-direction: column;
   }
 }
 
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
 @media screen and (max-width: 400px) {
   .navbar a {
     float: none;
@@ -112,25 +119,15 @@ body {
 <div class="header">
   <h1>Mr_bouquet</h1>
 </div>
-
-<div class="navbar">
-  <a href="#" class="active">Home</a>
-  <a href="#">Terms Of Service</a>
-</div>
 <div class="row">
   <div class="side">
     <h2>About Me</h2>
-    <p>Hello my name is Luther I am a small roblox developer I mainly make stuff like: Supermarkets, Cafe's and more.</p>
+    <p>Hello my name is Luther I am a small roblox devloper I mainly make stuff like: Supermarkets,Cafe's and more.
+    </p>
     <h3>Work</h3>
     <p>Here is some of the public stuff I have made including roblox games and Websites.</p>
     <div class="fakeimg" style="height:60px;">Image</div><br>
     <div class="fakeimg" style="height:60px;">Image</div><br>
     <div class="fakeimg" style="height:60px;">Image</div><br>
-  </div>
-<div class="footer">
-  <a href="https://github.com" target="_blank">
-    Open Source on GitHub
-  </a>
-</div>
-</body>
+ </body>
 </html>
